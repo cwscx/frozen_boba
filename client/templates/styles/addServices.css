@@ -1,0 +1,19 @@
+.billingFont {
+  font-size: 50px;
+
+  text-align: center;
+}
+
+.buttonCenter {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.description {
+  font: italic 12px Georgia, serif;
+  text-align: center;
+}
+
+.panel-package{
+}

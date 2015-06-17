@@ -1,0 +1,82 @@
+<template name="dashboard">
+  <div class="container">
+    {{#if thresholdPassed}}
+      {{> warning}}
+    {{/if}}
+
+    {{#if currentUser}}
+    <h1>My Dashboard</h1>
+    <hr>
+
+    <!--First row -->
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Billing</h2>
+      </div>
+
+
+    </div>
+    <!--Second row -->
+        <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-info">
+          <div class="panel-heading panel-currentBalance">Account Info</div>
+            <div class="panel-body">
+                <p>Account Name: {{currentUser.username}}</p>
+                <p>Account Type: {{currentUser.roles}}</p>
+                <p>Amount Due: ${{round userPayments.bill}} </p>
+
+                <p>Current Threshold: ${{userThresholds.threshold}}</p>
+
+                <div class="form-group">
+                  <label for="serviceCost">Update your threshold</label>
+                  <input type="text" class="form-control" id="updateThreshold" placeholder="300.00">
+                </div>
+
+                <button style="margin-top:15px" class="btn btn-success btn-block update-threshold" role="button">Update</button>
+
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-info">
+          <div class="panel-heading">Available Services</div>
+          <div class="panel-body centerButton">
+            <a class="btn btn-info btn-lg btn-block" href={{pathFor "viewServices"}} role="button">View Services</a>
+          </div>
+        </div>
+       </div>
+
+    </div>
+        <!--Third row -->
+    <div class="row">
+
+      <div class="col-sm-4">
+        <a class="btn btn-primary btn-lg btn-block" href={{pathFor "questions"}} role="button">Questions?</a>
+      </div>
+
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Pay Bill</button>
+      </div>
+
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block">View Statement</button>
+      </div>
+
+    </div>
+
+    {{else}}
+    <div class="container">
+      <h1> Sorry, you are not logged in. Please login. </h1>
+    </div>
+
+    {{/if}}
+  </div>
+</template>
+
+<template name="warning">
+  <div class="col-xs-12 alert alert-warning">
+    <p><strong>Your threshold has been passed.</strong></p>
+    <p>This is not recommended. Reset it or delete some of your packages or services. Call a customer service representative if you need assistance.</p>
+  </div>
+</template>

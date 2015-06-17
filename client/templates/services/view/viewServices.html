@@ -1,0 +1,129 @@
+<template name="viewServices">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="page-header">
+        <h1>Your bill is currently:</h1>
+        <h2 class="bill">${{round userPayments.bill}}</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+        <div class="page-header">
+          <h1>Services</h1>
+        </div>
+
+        <p style="color: red"><strong>Note:</strong> If you delete a service, you will be charged $150.</p>
+
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Service</th>
+              <th>Date Started Service</th>
+              <th>Bill due date</th>
+              <th>Cost</th>
+              <th></th>
+              <th></th>
+            </tr>
+            {{#each userServices}}
+
+            <tr>
+              <td>{{service}}</td>
+              <td>{{dateCreated}}</td>
+              <td>{{billingDate}}</td>
+              <td>${{cost}}</td>
+              <td>
+                <button value="{{_id}}" class="btn btn-warning btn-block btn-delete" role="button">Delete</button>
+              </td>
+              <td>
+                <button value="{{_id}}" class="btn btn-success btn-block btn-pay" role="button">Pay</button>
+              </td>
+            </tr>
+
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+
+        <div class="page-header">
+          <h1>Packages</h1>
+        </div>
+
+        <p style="color: red"><strong>Note:</strong> If you delete a service, you will be charged $150.</p>
+
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Package</th>
+              <th>Included Services</th>
+              <th>Date Started Package</th>
+              <th>Bill due date</th>
+              <th>Cost</th>
+              <th></th>
+              <th></th>
+            </tr>
+            {{#each userPackages}}
+
+            <tr>
+              <td>{{package}}</td>
+              <td>{{packageList}}</td>
+              <td>{{dateCreated}}</td>
+              <td>{{billingDate}}</td>
+              <td>${{cost}}</td>
+              <td>
+                <button value="{{_id}}" class="btn btn-warning btn-block btn-delete" role="button">Delete</button>
+              </td>
+              <td>
+                <button value="{{_id}}" class="btn btn-success btn-block btn-pay" role="button">Pay</button>
+              </td>
+            </tr>
+
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+
+        <div class="page-header">
+          <h1>Penalties</h1>
+        </div>
+
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Penalty for</th>
+              <th>Date Created</th>
+              <th>Due date</th>
+              <th>Pay</th>
+            </tr>
+            {{#each userPenalties}}
+
+            <tr>
+              <td>{{penaltyName}}</td>
+              <td>{{dateCreated}}</td>
+              <td>{{penaltyDue}}</td>
+              <td>
+                <button value="{{_id}}" class="btn btn-success btn-block btn-pay" role="button">Pay</button>
+              </td>
+            </tr>
+
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-offset-3 col-xs-6">
+          <a href="{{pathFor 'addServices'}}" class="btn btn-primary btn-lg btn-block btn-add" role="button">Add Services</a>
+        </div>
+      </div>
+
+    </div>
+
+</template>

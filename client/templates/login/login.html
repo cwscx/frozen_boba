@@ -1,0 +1,95 @@
+<template name="login">
+  <div class="container">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6 buffer">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username or Email address</label>
+          <input type="text" class="form-control" name="credential" placeholder="Username or Email">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+
+        <button type="submit" class="btn btn-default">Log in</button>
+
+      </form>
+    </div>
+
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+      <small>
+        <p>Don't have an account yet?</p>
+        <p><a href="{{pathFor 'register'}}">Sign up here!</a></p>
+      </small>
+    </div>
+
+    {{#if errorMessages}}
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+      {{#each errorMessages}}
+      <div class="alert alert-danger" role="alert"><strong>Warning: </strong>{{this}}</div>
+      {{/each}}
+    </div>
+    {{/if}}
+
+  </div>
+</template>
+
+<template name="loginStatus">
+
+  <ul class="nav navbar-nav">
+
+    {{#if currentUser}}
+    <li>
+      <p class="navbar-text"> {{currentUser.username}} is currently logged in. </p>
+    </li>
+
+    {{#if thresholdNotification}}
+    <li>
+      <form id="thresholdNotification">
+        <a href="{{pathFor 'dashboard'}}">
+          <button type="submit" class="btn btn-warning navbar-btn status-btn">Threshold Passed</button>
+        </a>
+      </form>
+    </li>
+    {{/if}}
+
+    {{#if isInRole 'admin'}}
+    <li>
+      <a href={{pathFor "adminPanel"}}><button class="btn btn-default navbar-btn" role="button">Admin</button></a>
+    </li>
+    {{/if}}
+
+    <li>
+      <p>&nbsp;&nbsp;&nbsp;</p>
+    </li>
+
+    <li>
+      <form id="logout-form">
+        <button type="submit" class="btn btn-default navbar-btn">Log out</button>
+      </form>
+    </li>
+
+    {{else}}
+
+    <li>
+      <form id="login">
+        <a href="{{pathFor 'login'}}">
+          <button type="submit" class="btn btn-info navbar-btn status-btn">Log in</button>
+        </a>
+      </form>
+    </li>
+
+    <li>
+      <form id="register">
+        <a href="{{pathFor 'register'}}">
+          <button type="submit" class="btn btn-info navbar-btn status-btn">Create an Account</button>
+        </a>
+      </form>
+    </li>
+
+    {{/if}}
+
+  </ul>
+
+</template>

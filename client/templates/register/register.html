@@ -1,0 +1,185 @@
+<template name="register">
+  <div class="container">
+
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+      <h1>Register</h1>
+
+      <hr>
+
+      <form id="registrationForm">
+
+        <div class="form-inline">
+          <div class="radio">
+            <label>
+              <input type="radio" name="customerType" class="customerType" value="retail" checked>
+              Retail
+            </label>
+          </div>
+
+          <div class="radio">
+            <label>
+              <input type="radio" name="customerType" class="customerType" value="commercial">
+              Commercial
+            </label>
+          </div>
+        </div>
+
+        {{> standardForm }}
+
+        {{#if equals customer 'commercial'}}
+          {{> commercialForm }}
+        {{/if}}
+
+        {{#if equals customer 'retail'}}
+          {{> retailForm}}
+        {{/if}}
+
+        {{> billingForm}}
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Register for Frozen Boba</button>
+        </div>
+
+        {{#if errorMessages}}
+        <div class="list-errors">
+          {{#each errorMessages}}
+          <div class="label label-danger">{{this}}</div>
+          <br>
+          {{/each}}
+        </div>
+        {{/if}}
+      </form>
+
+    </div>
+  </div>
+
+</template>
+
+<template name="standardForm">
+
+  <hr>
+
+  <h3>Account Info</h3>
+
+  <form class="form-inline">
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="first_name" placeholder="First Name">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+    </div>
+
+  </form>
+
+  <div class="form-group">
+    <input type="tel" class="form-control" name="phone" placeholder="Phone Number">
+  </div>
+
+  <div class="form-group">
+      <input type="text" class="form-control" name="username" placeholder="Username">
+  </div>
+
+  <div class="form-group">
+      <input type="email" class="form-control" name="email" placeholder="Email">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" placeholder="Enter password">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="repassword" placeholder="Re-enter password">
+  </div>
+
+</template>
+
+<template name="retailForm">
+
+  <hr>
+
+  <h3>Retail customer</h3>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="address1" placeholder="Address">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="address2" placeholder="Apartment, Unit, Building, Floor, etc.">
+  </div>
+
+  <form class="form-inline">
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="city_town" placeholder="City / Town">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="state" placeholder="State">
+    </div>
+
+  </form>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+  </div>
+
+</template>
+
+<template name="commercialForm">
+
+  <hr>
+
+  <h3>Commercial customer</h3>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="company_name" placeholder="Company Name">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="address1" placeholder="Company Address">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="address2" placeholder="Apartment, Unit, Building, Floor, etc.">
+  </div>
+
+  <form class="form-inline">
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="city_town" placeholder="City / Town">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="state" placeholder="State">
+    </div>
+
+  </form>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+  </div>
+</template>
+
+<template name="billingForm">
+
+  <hr>
+
+  <h3> Billing Info </h3>
+
+  <div class="form-group">
+    <input type="text" class="form-control" name="responsible_billing" placeholder="Person responsible for billing">
+  </div>
+
+  <div class="form-group">
+    <input type="tel" class="form-control" name="responsible_billing" placeholder="Phone number">
+  </div>
+
+  <div class="form-group">
+    <select class="form-control">
+      <option>Credit Card</option>
+      <option>Check</option>
+    </select>
+  </div>
+</template>

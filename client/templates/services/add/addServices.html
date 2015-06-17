@@ -1,0 +1,63 @@
+<template name ="addServices">
+
+  <div class="container">
+
+  <h1 style="color:navy">Services Available to Add</h1>
+
+	<hr>
+
+  <div class="row">
+
+    {{#each availableUserServices}}
+    <div class="col-md-4">
+	   	<div class="panel panel-info">
+			  <div class="panel-heading panel-default">Frozen Boba Telecom {{service}}</div>
+						<div class="panel-body">
+							<p class="billingFont">{{cost}}</p>
+							<p class="description">Price guaranteed for one year. Plus taxes and fees.</p>
+							<button type="button" name={{service}} class="btn btn-info btn-block button-service">Add Service</button>
+						</div>
+  		</div>
+		</div>
+    {{/each}}
+
+  </div> <!-- End of first row -->
+
+
+
+  <!-- New row for default packages -->
+  <div class="row">
+    {{#each availableUserPackages}}
+    <div class="col-md-6">
+      <div class="panel panel-danger panel-package">
+        <div class="panel-heading panel-default">{{package}} Boba Package</div>
+            <div class="panel-body">
+
+              <div class="col-md-6">
+                <p>Includes the following:</p>
+                <p>{{serviceList}}</p>
+              </div>
+
+              <div class="col-md-6">
+                <p class="description">Total Package price.</p>
+                <p class="billingFont" id="t">{{cost}}</p>
+              </div>
+
+              <button type="button" name={{package}} class="btn btn-danger btn-block buttonCenter button-package">Add the {{package}} Boba Package</button>
+            </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+
+
+  <div class="row">
+	  <div class="col-md-4 col-md-offset-4">
+      <button type="button" class="btn btn-default btn-block">Checkout</button>
+		</div>
+	</div> <!-- End of second row -->
+
+	</div>
+
+</template>

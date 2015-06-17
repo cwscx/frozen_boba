@@ -1,0 +1,68 @@
+<template name = "viewServicesRep">
+
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h1>Current Existing Services of All Customers</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <table class="table table-hover">
+	  <tbody>
+	    
+      <tr>
+        <th>Customer Name 1</th>
+	      <th><a href="{{pathFor 'viewServices'}}" class="btn btn-primary btn-xs" role="button">View</a></th>
+        <th>
+          <select name="dropdownaddservices" id="dropdownaddservices">
+            <option selected disabled hidden value=''></option>
+            <option value="wireless">Wireless</option>
+            <option value="homephone">Home Phone</option>
+            <option value="internet">Internet</option>
+          </select>
+          <button type="button" class="btn btn-primary btn-xs" role="button" id="dropdownaddservicesClick">Add</button>
+        </th>
+        <th>
+          <select name="dropdowndeleteservices" id="dropdowndeleteservices">
+            <option selected disabled hidden value=''></option>
+            <option value="wireless">Wireless</option>
+            <option value="homephone">Home Phone</option>
+            <option value="internet">Internet</option>
+          </select>
+          <a href="{{pathFor 'deleteServices'}}" class="btn btn-primary btn-xs" role="button">Delete</a>
+        </th>
+	    </tr>
+      <tr>
+	      <th>Customer Name 2</th>
+	      <th><a href="{{pathFor 'viewServices'}}" class="btn btn-primary btn-xs" role="button">View</a></th>
+        <th>
+          <select name="dropdownaddservices" id="dropdownaddservices">
+            <option selected disabled hidden value=''></option>
+            <option value="wireless">Wireless</option>
+            <option value="homephone">Home Phone</option>
+            <option value="internet">Internet</option>
+          </select>
+          <a href="{{pathFor 'addServices'}}" class="btn btn-primary btn-xs" role="button">Add</a>
+        </th>
+        <th>
+          <select name="dropdowndeleteservices" id="dropdowndeleteservices">
+            <option selected disabled hidden value=''></option>
+            <option value="wireless">Wireless</option>
+            <option value="homephone">Home Phone</option>
+            <option value="internet">Internet</option>
+          </select>
+          <a href="{{pathFor 'deleteServices'}}" class="btn btn-primary btn-xs" role="button">Delete</a>
+        </th>
+	    </tr>
+	  
+    </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+	
+</template>

@@ -1,0 +1,13 @@
+.panel-currentBalance {
+	background-image: LightSkyBlue !important;
+	color: white;
+}	
+.panel-availableServices {
+	background-color: LightSkyBlue;
+	color: white;
+	
+}
+
+.centerButton{
+	text-align: center;	
+}

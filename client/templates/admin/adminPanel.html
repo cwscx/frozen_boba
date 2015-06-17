@@ -1,0 +1,216 @@
+<template name="controlAdmin">
+</template>
+
+<template name="controlMarketing">
+  <div class="container">
+    <div class="page-header">
+      <h1>Marketing Representative Package Manager</h1>
+      <p>Hello {{currentUser.username}}. How was your day?</p>
+    </div>
+
+    <div class="col-sm-6">
+      <h2 style="text-align:center">Create New Services / Packages</h2>
+
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create new service</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="serviceName">Name of Service</label>
+            <input type="text" class="form-control" id="serviceName" placeholder="Example: radio">
+          </div>
+
+          <div class="form-group">
+            <label for="serviceCost">Cost of Service (Input Decimal)</label>
+            <input type="text" class="form-control" id="serviceCost" placeholder="9.99">
+          </div>
+
+          <input type="checkbox" name="adminOnlyService" value="true" checked=false> Admin Only
+
+          <button style="margin-top:15px" class="btn btn-success btn-block create-service" role="button">Create</button>
+        </div>
+      </div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create new package</h3>
+        </div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <label for="packageName">Name of Package</label>
+            <input type="text" class="form-control" id="packageName" placeholder="Example: dealsaver">
+          </div>
+
+          <div class="form-group">
+            <label for="packageCost">Cost of Package (Input Decimal)</label>
+            <input type="text" class="form-control" id="packageCost" placeholder="9.99">
+          </div>
+
+          <hr>
+          <h4>Existing Services</h4>
+
+          {{#each availableUserServices}}
+            <input type="checkbox" name="serviceCheck" value={{service}}> {{service}} <br>
+          {{/each}}
+
+          <hr>
+          <h4>Existing Packages</h4>
+
+          {{#each availableUserPackages}}
+            <input type="checkbox" name="packageCheck" value={{package}}> {{package}} <br>
+          {{/each}}
+
+          <hr>
+
+          <input type="checkbox" name="adminOnlyPackage" value="true" checked=false> Admin Only
+
+          <button style="margin-top:15px" class="btn btn-danger btn-block create-package" role="button">Create</button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6">
+
+      <h2 style="text-align:center">Current Services / Packages</h2>
+
+      <div class="col-sm-6">
+        {{#each availableUserServices}}
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-success">
+              <h3>{{service}}</h3>
+              <p>${{cost}}</p>
+              <p>Admin create only: {{bool adminOnly}}</p>
+            </li>
+          </ul>`
+        {{/each}}
+      </div>
+
+      <div class="col-sm-6">
+        {{#each availableUserPackages}}
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-danger">
+              <h3>{{package}}</h3>
+              <p>Services include: {{serviceList}}</p>
+              <p>${{cost}}</p>
+              <p>Admin create only: {{bool adminOnly}}</p>
+            </li>
+          </ul>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="controlService">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <h1>User List</h1>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+
+            {{#each userList}}
+              <tr>
+                <td>{{username}}</td>
+                <td>{{emails.[0].address}}</td>
+                <td><button name={{username}} value="{{_id}}" class="btn btn-success btn-default btn-manage" role="button">Manage</button></td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-7">
+        <h1>Manage user</h1>
+        <p>Click on the manage buttons to add and delete services</p>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Service</th>
+              <th>Date Started Service</th>
+              <th>Bill due date</th>
+              <th>Cost</th>
+              <th></th>
+            </tr>
+            {{#each userServices}}
+
+            <tr>
+              <td>{{service}}</td>
+              <td>{{dateCreated}}</td>
+              <td>{{billingDate}}</td>
+              <td>${{cost}}</td>
+              <td>
+                <button value="{{_id}}" class="btn btn-warning btn-block btn-delete" role="button">Delete</button>
+              </td>
+            </tr>
+
+            {{/each}}
+
+          </tbody>
+        </table>
+
+        <table class="table table-hover">
+      	  <tbody>
+      	    <tr>
+              <th>Package</th>
+              <th>Included Services</th>
+      	      <th>Date Started Package</th>
+      	      <th>Bill due date</th>
+              <th>Cost</th>
+              <th></th>
+      	    </tr>
+      	    {{#each userPackages}}
+
+            <tr>
+      	      <td>{{package}}</td>
+              <td>{{packageList}}</td>
+      	      <td>{{dateCreated}}</td>
+      	      <td>{{billingDate}}</td>
+              <td>${{cost}}</td>
+      	      <td>
+      	        <button value="{{_id}}" class="btn btn-warning btn-block btn-delete" role="button">Delete</button>
+      	      </td>
+      	    </tr>
+
+      	    {{/each}}
+      	  </tbody>
+        </table>
+
+        <h1>Add to the User</h1>
+
+        {{#each availableUserServices}}
+          <div style="margin-bottom:20px" class="col-xs-3">
+            <button name="{{service}}" class="btn btn-primary btn-block btn-service" role="button">{{service}}</button>
+          </div>
+        {{/each}}
+
+        {{#each availableUserPackages}}
+          <div style="margin-bottom:20px" class="col-xs-4">
+            <button name="{{package}}" class="btn btn-warning btn-block btn-package" role="button">{{package}}</button>
+          </div>
+        {{/each}}
+
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<template name="invalid">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>We're sorry.</h1>
+      <p>You do not seem to have permission to view this page.</p>
+    </div>
+  </div>
+</template>
